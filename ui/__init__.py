@@ -12,6 +12,8 @@ else:
 
 
 __all__ = [
-    "alphaclouds_renderer_panel"
+    "alphaclouds_renderer_panel",
+    "alphaclouds_inserter_panel"
+    
     
 ]

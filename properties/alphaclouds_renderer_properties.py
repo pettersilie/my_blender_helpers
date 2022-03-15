@@ -22,11 +22,11 @@ class AlphaCloudsRendererProperties(bpy.types.PropertyGroup):
     metaball_scale_from : bpy.props.FloatProperty(name='MetaBall Scake From', soft_min=-10, soft_max=10,default=0.3)
     metaball_scale_to : bpy.props.FloatProperty(name='MetaBall Scale To', soft_min=-10, soft_max=10,default=1.5)
     
-    metaball_amount_from : bpy.props.IntProperty(name='MetaBall Amount From', soft_min=-100, soft_max=100,default=30)
-    metaball_amount_to : bpy.props.IntProperty(name='MetaBall Amount To', soft_min=-100, soft_max=100,default=70)
+    metaball_amount_from : bpy.props.IntProperty(name='MetaBall Amount From', soft_min=-100, soft_max=100,default=40)
+    metaball_amount_to : bpy.props.IntProperty(name='MetaBall Amount To', soft_min=-100, soft_max=100,default=80)
     
-    sun_power_from : bpy.props.IntProperty(name='Sun Power From', soft_min=-1000, soft_max=1000,default=10)
-    sun_power_to : bpy.props.IntProperty(name='Sun Power To', soft_min=-1000, soft_max=1000,default=30)
+    sun_power_from : bpy.props.IntProperty(name='Sun Power From', soft_min=-1000, soft_max=1000,default=500)
+    sun_power_to : bpy.props.IntProperty(name='Sun Power To', soft_min=-1000, soft_max=1000,default=700)
     
     amount_of_clouds : bpy.props.IntProperty(name='Amount of Clouds', soft_min=0, soft_max=100,default=1)
     

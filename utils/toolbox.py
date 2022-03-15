@@ -63,7 +63,7 @@ def create_root_collection(col_name):
             
             
             
-def link_objects_to_collection(col_name, obj):
+def link_object_to_collection(col_name, obj):
 
     obj.users_collection[0].objects.unlink(obj)
     bpy.data.collections[col_name].objects.link(obj)
@@ -95,7 +95,7 @@ def directory_exists(path):
     
     p = Path(path)
     if (p.is_dir()):
-        return path.exists()
+        return p.exists()
     else:
         return False
  
@@ -107,4 +107,15 @@ def deselect_all(unset_active_object):
         
 def calculate_rotation(degress):
     return pi * degrees / 180
+    
+    
+def select_object(obj, make_active_object):
+    obj.select_set(True)
+    if (make_active_object == True):
+        bpy.context.scene.objects.active = obj 
+        
+def set_object_name(obj_name, obj):
+    obj.name = obj_name
+    obj.data.name = obj_name
+
           

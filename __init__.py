@@ -26,15 +26,17 @@ if "bpy" in locals():
 else:
     import bpy
     from .ui import *
-    from .ui.alphaclouds_renderer_panel import AlphaCloudsRendererPanel
     from .operators import *
     from .properties import *
     from .scripts import *
+    from .ui.alphaclouds_renderer_panel import AlphaCloudsRendererPanel
+    from .ui.alphaclouds_inserter_panel import AlphaCloudsInserterPanel
+
     from .operators.alphaclouds_renderer_operator import AlphaCloudsRendererOperator
     from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties
     
-#    from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
-#    from .properties.alphacloud_inserter_properties import AlphaCloudsInserterProperties
+    from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
+    from .properties.alphaclouds_inserter_properties import AlphaCloudsInserterProperties
     from .scripts import *
 
 
@@ -47,10 +49,11 @@ __CLASSES__ = [
     AlphaCloudsRendererOperator,
     AlphaCloudsRendererProperties,
     
-#    AlphacloudsInserterOperator,
-#    AlphaCloudsInserterProperties,
+    AlphacloudsInserterOperator,
+    AlphaCloudsInserterProperties,
     
-    AlphaCloudsRendererPanel
+    AlphaCloudsRendererPanel,
+    AlphaCloudsInserterPanel
     
 ]
 
@@ -77,7 +80,7 @@ def register():
     for cls in __CLASSES__:
         bpy.utils.register_class(cls)
     bpy.types.Scene.alphaclouds_renderer_props = bpy.props.PointerProperty(type=AlphaCloudsRendererProperties)
-    #bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
+    bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
     
     print(__name__ + " loaded")
 
@@ -89,7 +92,7 @@ def unregister():
     for cls in __CLASSES__:
         bpy.utils.unregister_class(cls)
     del bpy.types.Scene.alphaclouds_renderer_props
-   # del bpy.types.Scene.alphaclouds_inserter_props
+    del bpy.types.Scene.alphaclouds_inserter_props
     cleanse_modules()
     
 
