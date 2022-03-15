@@ -5,7 +5,7 @@ bl_info = {
     "blender": (2, 80, 0),
     "location": "View3D > n",
     "description": "Includes Helpers for Blender-Projects",
-    "warning": "",
+    "warning": "Some helpers here will delete all your objects inside you blend file before doing the job. Read the doc first!",
     "doc_url": "",
     "category": "",
 }
@@ -22,16 +22,19 @@ if "bpy" in locals():
     importlib.reload(operators)
     importlib.reload(properties)
     importlib.reload(scripts)
+    importlib.reload(utils)
 else:
     import bpy
     from .ui import *
-    from .ui.generate_ui import GenerateUI
+    from .ui.alphaclouds_renderer_panel import AlphaCloudsRendererPanel
     from .operators import *
     from .properties import *
-    from .operators.alphaclouds_generator_operator import AlphacloudsGeneratorOperator
-    from .properties.alphacloud_generator_properties import AlphaCloudsGeneratorProperties
-    from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
-    from .properties.alphacloud_inserter_properties import AlphaCloudsInserterProperties
+    from .scripts import *
+    from .operators.alphaclouds_renderer_operator import AlphaCloudsRendererOperator
+    from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties
+    
+#    from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
+#    from .properties.alphacloud_inserter_properties import AlphaCloudsInserterProperties
     from .scripts import *
 
 
@@ -40,19 +43,14 @@ else:
 
 
 
-#from lego_add_on.ui import GenerateUI
-#import lego_add_on
-
-
-
-
-
 __CLASSES__ = [
-    AlphacloudsGeneratorOperator,
-    AlphaCloudsGeneratorProperties,
-    AlphacloudsInserterOperator,
-    AlphaCloudsInserterProperties,
-    GenerateUI
+    AlphaCloudsRendererOperator,
+    AlphaCloudsRendererProperties,
+    
+#    AlphacloudsInserterOperator,
+#    AlphaCloudsInserterProperties,
+    
+    AlphaCloudsRendererPanel
     
 ]
 
@@ -78,8 +76,8 @@ def register():
     
     for cls in __CLASSES__:
         bpy.utils.register_class(cls)
-    bpy.types.Scene.alphaclouds_generator_props = bpy.props.PointerProperty(type=AlphaCloudsGeneratorProperties)
-    bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
+    bpy.types.Scene.alphaclouds_renderer_props = bpy.props.PointerProperty(type=AlphaCloudsRendererProperties)
+    #bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
     
     print(__name__ + " loaded")
 
@@ -90,8 +88,8 @@ def unregister():
     
     for cls in __CLASSES__:
         bpy.utils.unregister_class(cls)
-    del bpy.types.Scene.alphaclouds_generator_props
-    del bpy.types.Scene.alphaclouds_inserter_props
+    del bpy.types.Scene.alphaclouds_renderer_props
+   # del bpy.types.Scene.alphaclouds_inserter_props
     cleanse_modules()
     
 

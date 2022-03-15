@@ -2,6 +2,6 @@ import bpy
 
 
 __all__ = [
-    "alphaclouds_generator",
+    "alphaclouds_renderer",
     "alphaclouds_inserter"    
 ]

@@ -1,7 +1,7 @@
 import bpy
 
 
-class AlphaCloudsGeneratorProperties(bpy.types.PropertyGroup):
+class AlphaCloudsRendererProperties(bpy.types.PropertyGroup):
 
     
 
@@ -31,6 +31,6 @@ class AlphaCloudsGeneratorProperties(bpy.types.PropertyGroup):
     amount_of_clouds : bpy.props.IntProperty(name='Amount of Clouds', soft_min=0, soft_max=100,default=1)
     
     render_toggle : bpy.props.BoolProperty(name='Render?',default=False)
-    cloud_export_path : bpy.props.StringProperty(name="Path", subtype='FILE_PATH')
+    cloud_export_path : bpy.props.StringProperty(name="Output", subtype='FILE_PATH')
     
     

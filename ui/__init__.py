@@ -4,14 +4,14 @@
 if "bpy" in locals():
     print("BPY IN LOCALS")
     import importlib
-    importlib.reload(generate_ui)
+    importlib.reload(alphaclouds_renderer_panel)
 else:
     import bpy
-    from . import generate_ui
+    from . import alphaclouds_renderer_panel
 
 
 
 __all__ = [
-    "generate_ui"
+    "alphaclouds_renderer_panel"
     
 ]
