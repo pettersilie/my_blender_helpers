@@ -2,6 +2,7 @@ import bpy
 from ..scripts import alphaclouds_renderer
 import random
 from random import uniform
+from ..utils import toolbox
 
 
 class AlphaCloudsRendererOperator(bpy.types.Operator):
@@ -74,7 +75,7 @@ class AlphaCloudsRendererOperator(bpy.types.Operator):
         
         
         
-        
+        toolbox.purge_orphans()
         #this is a report, it pops up in the area defined in the word
         #in curly braces {} which is the first argument, second is the actual displayed text
         self.report({'INFO'}, "The custom operator actually worked!")
