@@ -31,12 +31,22 @@ else:
     from .scripts import *
     from .ui.alphaclouds_renderer_panel import AlphaCloudsRendererPanel
     from .ui.alphaclouds_inserter_panel import AlphaCloudsInserterPanel
+    from .ui.alphaplants_renderer_panel import AlphaPlantsRendererPanel
+    from .ui.alphaplants_decorator_panel import AlphaPlantsDecoratorPanel
 
     from .operators.alphaclouds_renderer_operator import AlphaCloudsRendererOperator
-    from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties
-    
     from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
+    from .operators.alphaplants_renderer_operator import AlphaPlantsRendererOperator
+    from .operators.alphaplants_decorator_operator import AlphaPlantsDecoratorOperator
+    
+    
+    from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties        
     from .properties.alphaclouds_inserter_properties import AlphaCloudsInserterProperties
+    from .properties.alphaplants_renderer_properties import AlphaPlantsRendererProperties
+    from .properties.alphaplants_decorator_properties import AlphaPlantsDecoratorProperties
+    
+    
+    
     from .scripts import *
 
 
@@ -47,13 +57,19 @@ else:
 
 __CLASSES__ = [
     AlphaCloudsRendererOperator,
-    AlphaCloudsRendererProperties,
-    
     AlphacloudsInserterOperator,
+    AlphaPlantsRendererOperator,
+    AlphaPlantsDecoratorOperator,
+        
+    AlphaCloudsRendererProperties,
     AlphaCloudsInserterProperties,
+    AlphaPlantsRendererProperties,
+    AlphaPlantsDecoratorProperties,
     
     AlphaCloudsRendererPanel,
-    AlphaCloudsInserterPanel
+    AlphaCloudsInserterPanel,
+    AlphaPlantsRendererPanel,
+    AlphaPlantsDecoratorPanel
     
 ]
 
@@ -82,6 +98,9 @@ def register():
     bpy.types.Scene.alphaclouds_renderer_props = bpy.props.PointerProperty(type=AlphaCloudsRendererProperties)
     bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
     
+    bpy.types.Scene.alphaplants_renderer_props = bpy.props.PointerProperty(type=AlphaPlantsRendererProperties)
+    bpy.types.Scene.alphaplants_decorator_props = bpy.props.PointerProperty(type=AlphaPlantsDecoratorProperties)
+    
     print(__name__ + " loaded")
 
 
@@ -93,6 +112,8 @@ def unregister():
         bpy.utils.unregister_class(cls)
     del bpy.types.Scene.alphaclouds_renderer_props
     del bpy.types.Scene.alphaclouds_inserter_props
+    del bpy.types.Scene.alphaplants_renderer_props
+    del bpy.types.Scene.alphaplants_decorator_props
     cleanse_modules()
     
 
