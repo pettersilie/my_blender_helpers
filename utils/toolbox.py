@@ -103,7 +103,7 @@ def deselect_all(unset_active_object):
     bpy.ops.object.select_all(action='DESELECT')
     
     if (unset_active_object == True):
-        bpy.context.scene.objects.active = None 
+        bpy.context.view_layer.objects.active = None 
         
 def calculate_rotation(degress):
     return pi * degrees / 180
@@ -112,10 +112,26 @@ def calculate_rotation(degress):
 def select_object(obj, make_active_object):
     obj.select_set(True)
     if (make_active_object == True):
-        bpy.context.scene.objects.active = obj 
+        bpy.context.view_layer.objects.active = obj 
         
 def set_object_name(obj_name, obj):
     obj.name = obj_name
     obj.data.name = obj_name
+    
+    
+def select_object_by_name(name,set_active_object):
+    obj  = bpy.data.objects[name]
+    obj.select_set(True)
+    if (set_active_object == True):
+        bpy.context.view_layer.objects.active = obj 
+        
+
+def get_object_by_prefix(prefix):
+    for obj in bpy.data.objects:
+        if (obj.name.startswith(prefix)):
+            return obj
+    return None
+        
+    
 
           

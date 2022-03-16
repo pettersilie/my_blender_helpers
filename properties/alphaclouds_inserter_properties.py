@@ -22,6 +22,12 @@ class AlphaCloudsInserterProperties(bpy.types.PropertyGroup):
     use_duplicates_toggle : bpy.props.BoolProperty(name='use dupblicates?',default=False)
     amount_of_duplicates : bpy.props.IntProperty(name='Amount of Duplicates', default=0)
     
+    emission_color : bpy.props.FloatVectorProperty(name = "Emission Color",subtype = "COLOR_GAMMA", size=4)
+    emission_strength : bpy.props.FloatProperty(name='Emission Strength', default=0)
+    
+    
+    
+    
     track_to_camera_toggle : bpy.props.BoolProperty(name='Track to Cam?',default=False)
     file_import_path : bpy.props.StringProperty(name="Image-Dir", subtype='FILE_PATH')
     

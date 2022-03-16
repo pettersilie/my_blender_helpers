@@ -41,6 +41,10 @@ class AlphaCloudsInserterPanel(bpy.types.Panel):
         subrow.row()
         subrow.prop(context.scene.alphaclouds_inserter_props, 'track_to_camera_toggle')
         subrow.row()
+        subrow.row()
+        subrow.prop(context.scene.alphaclouds_inserter_props, 'emission_color')
+        subrow.prop(context.scene.alphaclouds_inserter_props, 'emission_strength')
+        
         subrow.operator('custom.alphaclouds_inserter_operator', text = 'Import')
         
  

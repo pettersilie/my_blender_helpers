@@ -28,6 +28,10 @@ class AlphaCloudsRendererProperties(bpy.types.PropertyGroup):
     sun_power_from : bpy.props.IntProperty(name='Sun Power From', soft_min=-1000, soft_max=1000,default=500)
     sun_power_to : bpy.props.IntProperty(name='Sun Power To', soft_min=-1000, soft_max=1000,default=700)
     
+    resolution_x : bpy.props.IntProperty(name='ResolutionX', default=1920)
+    resolution_y : bpy.props.IntProperty(name='ResolutionY', default=1080)
+    
+    
     amount_of_clouds : bpy.props.IntProperty(name='Amount of Clouds', soft_min=0, soft_max=100,default=1)
     
     render_toggle : bpy.props.BoolProperty(name='Render?',default=False)

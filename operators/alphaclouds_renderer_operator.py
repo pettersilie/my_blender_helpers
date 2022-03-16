@@ -52,6 +52,8 @@ class AlphaCloudsRendererOperator(bpy.types.Operator):
         alphaclouds_renderer.SUN_POWER_TO = props.sun_power_to
 
         alphaclouds_renderer.AMOUNT_OF_RENDERED_CLOUDS = props.amount_of_clouds
+        alphaclouds_renderer.RES_X = props.resolution_x
+        alphaclouds_renderer.RES_Y = props.resolution_y
         
         
         alphaclouds_renderer.printit()

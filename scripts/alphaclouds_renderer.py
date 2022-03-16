@@ -27,6 +27,9 @@ METABALLS_AMOUNT_TO = 70
 SUN_POWER_FROM = 10
 SUN_POWER_TO = 30
 
+RES_X = 0
+RES_Y = 0
+
 AMOUNT_OF_RENDERED_CLOUDS = 300
 
 
@@ -108,6 +111,8 @@ def setup():
     global METABALL_SCALE_TO
     global METABALLS_AMOUNT_FROM
     global METABALLS_AMOUNT_TO
+    global RES_X
+    global RES_Y
     
     METABALL_SCALE = uniform(METABALL_SCALE_FROM,METABALL_SCALE_TO)
     CAMERA_DISTANCE = uniform(CAMERA_DISTANCE_FROM, CAMERA_DISTANCE_TO)
@@ -146,8 +151,8 @@ def setup():
         bpy.context.scene.eevee.use_bloom = True
         bpy.context.scene.eevee.use_gtao = True
         bpy.context.scene.render.image_settings.file_format = 'PNG'
-        bpy.context.scene.render.resolution_x = 1920
-        bpy.context.scene.render.resolution_y = 1080
+        bpy.context.scene.render.resolution_x = RES_X
+        bpy.context.scene.render.resolution_y = RES_Y
         
 
 

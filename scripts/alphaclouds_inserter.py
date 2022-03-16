@@ -20,6 +20,9 @@ SCALE_FACTOR_X = 1500
 SCALE_FACTOR_Y = 1500
 SCALE_FACTOR_Z = 600
 
+EMISSION_COLOR = None
+EMISSION_STRENGTH = 0
+
 FILES = []
 ORIGINAL_CLOUDS = []
 CLOUDPATH = "C:\\Users\\Mirko\\Desktop\\alphaclouds\\render"
@@ -38,7 +41,23 @@ def get_alphaclouds():
     
     FILES = toolbox.get_files_from_directory(CLOUDPATH)
             
-   
+def set_emission(name):
+
+    global EMISSION_COLOR
+    global EMISSION_STRENGTH
+    if (EMISSION_STRENGTH == 0):
+        return
+    
+    color_obj = bpy.data.collections['clouds'].objects[name]
+
+ #   toolbox.deselect_all(True)
+ #   toolbox.select_object_by_name(name,True)
+    
+
+    color_obj.data.materials[0].node_tree.nodes["Principled BSDF"].inputs[19].default_value = EMISSION_COLOR
+    color_obj.data.materials[0].node_tree.nodes["Principled BSDF"].inputs[20].default_value = EMISSION_STRENGTH
+
+
     
 
 
@@ -47,8 +66,8 @@ def cleanup():
     global ORIGINAL_CLOUDS
     
     ORIGINAL_CLOUDS = []
-    if "cloudCubes" in bpy.data.collections :
-        for ob in bpy.data.collections['cloudCubes'].objects:
+    if "clouds" in bpy.data.collections :
+        for ob in bpy.data.collections['clouds'].objects:
             ob.hide_set(False)
             ob.hide_render = False
             ob.select_set(True)
@@ -56,6 +75,19 @@ def cleanup():
             bpy.ops.object.delete() 
             CURRENT_COUNTER = 1
             
+            
+def dupblicate_cloud(name):
+    global CURRENT_COUNTER
+    toolbox.deselect_all(True)
+    toolbox.select_object_by_name(name,True)
+    bpy.ops.object.duplicate(linked=True)
+    
+    duplicate = toolbox.get_object_by_prefix(name + ".")
+    if (duplicate is not None):
+        toolbox.set_object_name("cloudMesh" + str(CURRENT_COUNTER), duplicate)
+   
+    
+    
     
 
 def createCube(name):
@@ -85,11 +117,11 @@ def createCube(name):
     myCube_obj.name = name
     myCube_obj.data.name = name
     
-    if (USE_DUPLICATES = True):
+    if (USE_DUPLICATES == True):
         ORIGINAL_CLOUDS.append(myCube_obj)
         
    # myCube_obj.select_set(False)
-    bpy.data.collections['cloudCubes'].objects.link(myCube_obj)
+    bpy.data.collections['clouds'].objects.link(myCube_obj)
     bpy.context.scene.collection.objects.unlink(myCube_obj)
     
   
@@ -97,8 +129,8 @@ def createCube(name):
   
 def create_collection() :
 #    print ("CREATING COLLECTION")
-    if "cloudCubes" not in bpy.data.collections :
-        create_collection = bpy.data.collections.new(name="cloudCubes")
+    if "clouds" not in bpy.data.collections :
+        create_collection = bpy.data.collections.new(name="clouds")
         bpy.context.scene.collection.children.link(create_collection)
         
       
@@ -115,7 +147,7 @@ def move_cloudbox_in_area(name):
     global CLOUD_AREA_Y_TO 
     global CLOUD_AREA_Z_FROM 
     global CLOUD_AREA_Z_TO 
-    move_obj = bpy.data.collections['cloudCubes'].objects[name]
+    move_obj = bpy.data.collections['clouds'].objects[name]
     
 
     move_obj.location.x = random.randint(CLOUD_AREA_X_FROM, CLOUD_AREA_X_TO)
@@ -132,7 +164,7 @@ def scale_cloud(name):
     global SCALE_FACTOR_X
     global SCALE_FACTOR_Y
     global SCALE_FACTOR_Z
-    scale_obj = bpy.data.collections['cloudCubes'].objects[name]
+    scale_obj = bpy.data.collections['clouds'].objects[name]
 #    print("SIZE X: " + str(scale_obj.dimensions.x))
     size_x = scale_obj.dimensions.x
     size_y = scale_obj.dimensions.y
