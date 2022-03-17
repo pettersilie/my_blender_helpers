@@ -5,7 +5,7 @@ from math import pi
 from ..utils import toolbox
 
 
-OUTPUT = "C:\\Users\\Mirko\\Desktop\\alphaclouds\\render\\"
+OUTPUT = ""
 
 CAMERA_DISTANCE_FROM = -40
 CAMERA_DISTANCE_TO = -30

@@ -15,7 +15,8 @@ __all__ = [
     "alphaclouds_renderer_panel",
     "alphaclouds_inserter_panel",
     "alphaplants_renderer_panel",
-    "alphaplants_decorator_panel"
+    "alphaplants_decorator_panel",
+    "rocks_generator_panel"
     
     
 ]

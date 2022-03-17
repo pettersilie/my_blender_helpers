@@ -1,6 +1,6 @@
 import bpy
 from .. import *
-from ..properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties
+from ..properties.alphaplants_renderer_properties import AlphaPlantsRendererProperties
 
 
 
@@ -19,9 +19,11 @@ class AlphaPlantsRendererPanel(bpy.types.Panel):
         
         subrow = self.layout
         
-        subrow.prop(context.scene.alphaclouds_renderer_props, 'camera_distance_from')
+        subrow.prop(context.scene.alphaplants_renderer_props, 'camera_distance_from')
+        
+        
         
         subrow.row()
         subrow.row()
-        subrow.operator('custom.alphaclouds_renderer_operator', text = 'Render')
+        subrow.operator('custom.alphaplants_renderer_operator', text = 'Render')
         self.layout.separator()  

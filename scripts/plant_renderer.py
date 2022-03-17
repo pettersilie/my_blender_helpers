@@ -6,8 +6,8 @@ from math import pi
 import time
 import numpy as np
 
-OUTPUT = "C:\\Users\\mirko\\Desktop\\plant_generator\\render\\"
-LEAVES_DIR = "C:\\Users\\mirko\\Desktop\\plant_generator\\alphaplants"
+OUTPUT = ""
+LEAVES_DIR = ""
 FILES = []
 
 TREE_SEED_MIN = 10

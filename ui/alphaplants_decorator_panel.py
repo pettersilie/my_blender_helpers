@@ -22,6 +22,7 @@ class AlphaPlantsDecoratorPanel(bpy.types.Panel):
         subrow = self.layout
         
         subrow.prop(context.scene.alphaplants_decorator_props, 'camera_distance_from')
+        subrow.prop(context.scene.alphaplants_decorator_props, 'test_pointer')
         
         subrow.row()
         subrow.row()

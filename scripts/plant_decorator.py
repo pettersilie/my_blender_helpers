@@ -6,7 +6,7 @@ from math import pi
 import time
 import numpy as np
 
-SRC_DIR = "C:\\Users\\mirko\\Desktop\\plant_generator\\render\\"
+SRC_DIR = ""
 
 FILES = []
 BEND_ANGLE = 180

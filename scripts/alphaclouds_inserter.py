@@ -25,7 +25,7 @@ EMISSION_STRENGTH = 0
 
 FILES = []
 ORIGINAL_CLOUDS = []
-CLOUDPATH = "C:\\Users\\Mirko\\Desktop\\alphaclouds\\render"
+CLOUDPATH = ""
 
 AMOUNT_OF_CLOUDBOXES = 800
 USE_DUPLICATES = False

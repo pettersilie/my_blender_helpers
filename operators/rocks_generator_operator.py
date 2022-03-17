@@ -1,13 +1,13 @@
 import bpy
-from ..scripts import plant_renderer
+from ..scripts import rocks_generator
 import random
 from random import uniform
 from ..utils import toolbox
 
 
-class AlphaPlantsRendererOperator(bpy.types.Operator):
+class RocksGeneratorOperator(bpy.types.Operator):
 
-    bl_idname = 'custom.alphaplants_renderer_operator'
+    bl_idname = 'custom.rocks_generator_operator'
 
     bl_label = 'Generate'
 
@@ -17,7 +17,7 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
     @classmethod
     def poll(cls, context):
         #check the context here
-        return context.object is not None
+        return True
     
     #this is the cream of the entire operator class, this one's the function that gets
     #executed when the button is pressed
@@ -27,7 +27,9 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
 
         
         
-        props = context.scene.alphaplants_renderer_props
+        props = context.scene.rocks_generator_props
+        
+        rocks_generator.main()
         
         
         
