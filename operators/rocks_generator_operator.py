@@ -28,54 +28,85 @@ class RocksGeneratorOperator(bpy.types.Operator):
         
         
         props = context.scene.rocks_generator_props
-        
-        rocks_generator.main()
-        
-        
-        
- #       alphaclouds_renderer.OUTPUT = props.cloud_export_path
 
- #       alphaclouds_renderer.CAMERA_DISTANCE_FROM = props.camera_distance_from
-  #      alphaclouds_renderer.CAMERA_DISTANCE_TO = props.camera_distance_to
-
-   #     alphaclouds_renderer.METABALL_AREA_X_FROM = props.metaball_area_x_from 
-   #     alphaclouds_renderer.METABALL_AREA_X_TO = props.metaball_area_x_to
-
-    #    alphaclouds_renderer.METABALL_AREA_Z_FROM = props.metaball_area_z_from
-    #    alphaclouds_renderer.METABALL_AREA_Z_TO = props.metaball_area_z_to
-
-    #    alphaclouds_renderer.METABALL_AREA_Y_FROM = props.metaball_area_y_from
-    #    alphaclouds_renderer.METABALL_AREA_Y_TO = props.metaball_area_y_to
-
-   #     alphaclouds_renderer.METABALL_SCALE_FROM = props.metaball_scale_from
-   #     alphaclouds_renderer.METABALL_SCALE_TO = props.metaball_scale_to
-   #     alphaclouds_renderer.METABALLS_AMOUNT_FROM = props.metaball_amount_from
-   #     alphaclouds_renderer.METABALLS_AMOUNT_TO = props.metaball_amount_to
-
-    #    alphaclouds_renderer.SUN_POWER_FROM = props.sun_power_from
-    #    alphaclouds_renderer.SUN_POWER_TO = props.sun_power_to
-
-    #    alphaclouds_renderer.AMOUNT_OF_RENDERED_CLOUDS = props.amount_of_clouds
-    #    alphaclouds_renderer.RES_X = props.resolution_x
-    #    alphaclouds_renderer.RES_Y = props.resolution_y
+        rocks_generator.SCALE_X_FROM = props.scale_factor_x_from
+        rocks_generator.SCALE_X_TO = props.scale_factor_x_to
+        rocks_generator.SCALE_Y_FROM = props.scale_factor_y_from
+        rocks_generator.SCALE_Y_TO = props.scale_factor_y_to
+        rocks_generator.SCALE_Z_FROM = props.scale_factor_z_from
+        rocks_generator.SCALE_Z_TO = props.scale_factor_z_to
+        
+        rocks_generator.ROT_X_FROM = props.rot_x_from
+        rocks_generator.ROT_X_TO = props.rot_x_to
+        rocks_generator.ROT_Y_FROM = props.rot_y_from
+        rocks_generator.ROT_Y_TO = props.rot_y_to
+        rocks_generator.ROT_Z_FROM = props.rot_z_from
+        rocks_generator.ROT_Z_TO = props.rot_z_to
+        
+        rocks_generator.AMOUNT_OF_ROCKS = props.amount_of_rocks
+        rocks_generator.AMOUNT_OF_DUPLICATES = props.amount_of_duplicates
+        rocks_generator.DISPLACE_PERCENTAGE_FROM = props.displace_percentage_from
+        rocks_generator.DISPLACE_PERCENTAGE_TO = props.displace_percentage_to
+        rocks_generator.SUBDIVISIONS = props.sphere_subdivision
+        
+        rocks_generator.DISPLACEMENT_STRENGTH_FROM = props.displace_strength_from
+        rocks_generator.DISPLACEMENT_STRENGTH_TO = props.displace_strength_to
+            
+        rocks_generator.DECORATE_OBJECT = props.decorate_object
+        
+        rocks_generator.SMOOTH = props.smooth_toggle
+        rocks_generator.ROCK_TEXTURE_DIR = props.rock_texture_dir
+        
+        DELETE = props.delete_toggle
+        
+        counter = 0
+        
+        if (DELETE == True):
+            rocks_generator.delete_rocks()
+        rocks_generator.read_textures()
+        rocks_generator.create_collection()
+        if (rocks_generator.DECORATE_OBJECT is not None):
+            rocks_generator.get_decorate_vertices()
         
         
-     #   alphaclouds_renderer.printit()
+        while counter <= rocks_generator.AMOUNT_OF_ROCKS:
         
-      #  counter = 1
+            toolbox.deselect_all(True)
+            rocks_generator.create_rock()
+            rocks_generator.add_vertex_group()
+            rocks_generator.add_displacement_modifier()
+            rocks_generator.create_material()
+            
+            if (rocks_generator.SMOOTH == True):
+                rocks_generator.make_smooth()
+                
+            rocks_generator.scale_rock()
+            rocks_generator.rotate_rock()
+            if (rocks_generator.DECORATE_OBJECT is not None):
+                rocks_generator.move_rock_to_decorate_vertex()
         
-      
-    
-    #    while counter <= alphaclouds_renderer.AMOUNT_OF_RENDERED_CLOUDS:
-    #        alphaclouds_renderer.delete_all()
-    #        alphaclouds_renderer.setup()
-    #        alphaclouds_renderer.create_metaballs()
-    #        alphaclouds_renderer.add_material()
-     #       if (props.render_toggle == True):
-     #           alphaclouds_renderer.render(counter)
-     #       print ("Generating Cloud Image: " + str(counter))
-           
-      #      counter = counter +1
+        
+        
+            counter = counter +1
+            rocks_generator.CURRENT_COUNTER = rocks_generator.CURRENT_COUNTER + 1
+  
+        if (rocks_generator.AMOUNT_OF_DUPLICATES > 0):
+            counter = 0
+            while (counter < rocks_generator.AMOUNT_OF_DUPLICATES):
+                
+                
+                rocks_generator.create_duplicate_rock()
+                if (rocks_generator.DECORATE_OBJECT is not None):
+                    rocks_generator.move_rock_to_decorate_vertex()
+                counter = counter+1
+                
+        
+        
+        
+        
+        
+
+
     
         
         

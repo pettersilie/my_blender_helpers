@@ -50,7 +50,19 @@ def purge_orphans():
       if block.users == 0:
           bpy.data.cameras.remove(block)
           
-          
+def get_selected_vertices_from_object_as_index(obj):
+    indices = []
+    for vert in obj.data.vertices:
+        if (vert.select == True):
+            indices.append(vert.index)
+    return indices
+    
+def get_selected_vertices_from_object_as_vertex(obj):
+    vertices = []
+    for vert in obj.data.vertices:
+        if (vert.select == True):
+            vertices.append(vert)
+    return vertices
           
           
 def create_root_collection(col_name):
@@ -105,7 +117,7 @@ def deselect_all(unset_active_object):
     if (unset_active_object == True):
         bpy.context.view_layer.objects.active = None 
         
-def calculate_rotation(degress):
+def calculate_rotation(degrees):
     return pi * degrees / 180
     
     
