@@ -45,6 +45,7 @@ else:
     from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties        
     from .properties.alphaclouds_inserter_properties import AlphaCloudsInserterProperties
     from .properties.alphaplants_renderer_properties import AlphaPlantsRendererProperties
+                    
     from .properties.alphaplants_decorator_properties import AlphaPlantsDecoratorProperties
     from .properties.rocks_generator_properties import RocksGeneratorProperties
     
@@ -103,7 +104,7 @@ def register():
         bpy.utils.register_class(cls)
     bpy.types.Scene.alphaclouds_renderer_props = bpy.props.PointerProperty(type=AlphaCloudsRendererProperties)
     bpy.types.Scene.alphaclouds_inserter_props = bpy.props.PointerProperty(type=AlphaCloudsInserterProperties)
-    
+                    
     bpy.types.Scene.alphaplants_renderer_props = bpy.props.PointerProperty(type=AlphaPlantsRendererProperties)
     bpy.types.Scene.alphaplants_decorator_props = bpy.props.PointerProperty(type=AlphaPlantsDecoratorProperties)
     

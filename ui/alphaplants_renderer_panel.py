@@ -18,12 +18,53 @@ class AlphaPlantsRendererPanel(bpy.types.Panel):
         
         
         subrow = self.layout
+        props = context.scene.alphaplants_renderer_props
         
-        subrow.prop(context.scene.alphaplants_renderer_props, 'camera_distance_from')
-        
-        
-        
+       
+        subrow.prop(props, 'plant_export_path')
+        subrow.prop(props, 'leaves_path')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'res_x')
+        subrow.prop(props, 'res_y')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'random_seed_from')
+        subrow.prop(props, 'random_seed_to')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'random_leaves_from')
+        subrow.prop(props, 'random_leaves_to')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'random_levels_from')
+        subrow.prop(props, 'random_levels_to')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'random_trunk_heigth_from')
+        subrow.prop(props, 'random_trunk_height_to')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'random_scale_from')
+        subrow.prop(props, 'random_scale_to')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'amount_plants')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'render_toggle')
         subrow.row()
         subrow.row()
         subrow.operator('custom.alphaplants_renderer_operator', text = 'Render')
-        self.layout.separator()  
+        
+        
+        
+
+
+
+    
+    
+    
+  
+ 
+    

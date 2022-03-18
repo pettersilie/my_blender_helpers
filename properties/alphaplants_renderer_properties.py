@@ -5,21 +5,33 @@ class AlphaPlantsRendererProperties(bpy.types.PropertyGroup):
 
     
 
-
-    camera_distance_from : bpy.props.IntProperty(name='Camera Distance From', soft_min=-100, soft_max=100,default=-44)
-    camera_distance_to : bpy.props.IntProperty(name='Camera Distance To', soft_min=-100, soft_max=100,default=-30)
-
-
-    metaball_area_x_from : bpy.props.FloatProperty(name='MetaBall X From', soft_min=-10, soft_max=10,default=-10)
-    metaball_area_x_to : bpy.props.FloatProperty(name='MetaBall X To', soft_min=-10, soft_max=10,default=10)
     
- 
+    res_x : bpy.props.IntProperty(name='Resolution X' ,default=1280)
+    res_y : bpy.props.IntProperty(name='Resolution Y',default=1280)
     
-    amount_of_clouds : bpy.props.IntProperty(name='Amount of Clouds', soft_min=0, soft_max=100,default=1)
+    
+    random_seed_from : bpy.props.IntProperty(name='Rand Seed From' ,default=0)
+    random_seed_to : bpy.props.IntProperty(name='Rand Seed To',default=3)
+    
+    random_leaves_from : bpy.props.IntProperty(name='Rand Leaves From' ,min=0,default=10)
+    random_leaves_to : bpy.props.IntProperty(name='Rand Leaves To', min=0, default=70)
+    
+    random_levels_from : bpy.props.IntProperty(name='Rand Levels From' ,min=0,max=4,default=1)
+    random_levels_to : bpy.props.IntProperty(name='Rand Levels To', min=0, max=4,default=2)
+
+
+    random_trunk_heigth_from : bpy.props.FloatProperty(name='Trunk Height From', min=-0, max=1,default=.5)
+    random_trunk_height_to  : bpy.props.FloatProperty(name='Trunk Height To', soft_min=0, max=1,default=.5)
+    
+    random_scale_from : bpy.props.FloatProperty(name='Scale From', min=-0, default=1)
+    random_scale_to  : bpy.props.FloatProperty(name='Scale To', soft_min=0, default=2)
+    
+    amount_plants : bpy.props.IntProperty(name='Amount of Plants', min=1, soft_max=100,default=1)
     
     
     
     render_toggle : bpy.props.BoolProperty(name='Render?',default=False)
-    cloud_export_path : bpy.props.StringProperty(name="Output", subtype='FILE_PATH')
+    plant_export_path : bpy.props.StringProperty(name="Render Dir", subtype='FILE_PATH')
+    leaves_path : bpy.props.StringProperty(name="Leaves Dir", subtype='FILE_PATH')
     
     

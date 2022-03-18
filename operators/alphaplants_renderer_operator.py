@@ -17,7 +17,7 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
     @classmethod
     def poll(cls, context):
         #check the context here
-        return context.object is not None
+        return True
     
     #this is the cream of the entire operator class, this one's the function that gets
     #executed when the button is pressed
@@ -30,56 +30,63 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
         props = context.scene.alphaplants_renderer_props
         
         
+        plant_renderer.OUTPUT = props.plant_export_path
+        plant_renderer.LEAVES_DIR = props.leaves_path
         
- #       alphaclouds_renderer.OUTPUT = props.cloud_export_path
-
- #       alphaclouds_renderer.CAMERA_DISTANCE_FROM = props.camera_distance_from
-  #      alphaclouds_renderer.CAMERA_DISTANCE_TO = props.camera_distance_to
-
-   #     alphaclouds_renderer.METABALL_AREA_X_FROM = props.metaball_area_x_from 
-   #     alphaclouds_renderer.METABALL_AREA_X_TO = props.metaball_area_x_to
-
-    #    alphaclouds_renderer.METABALL_AREA_Z_FROM = props.metaball_area_z_from
-    #    alphaclouds_renderer.METABALL_AREA_Z_TO = props.metaball_area_z_to
-
-    #    alphaclouds_renderer.METABALL_AREA_Y_FROM = props.metaball_area_y_from
-    #    alphaclouds_renderer.METABALL_AREA_Y_TO = props.metaball_area_y_to
-
-   #     alphaclouds_renderer.METABALL_SCALE_FROM = props.metaball_scale_from
-   #     alphaclouds_renderer.METABALL_SCALE_TO = props.metaball_scale_to
-   #     alphaclouds_renderer.METABALLS_AMOUNT_FROM = props.metaball_amount_from
-   #     alphaclouds_renderer.METABALLS_AMOUNT_TO = props.metaball_amount_to
-
-    #    alphaclouds_renderer.SUN_POWER_FROM = props.sun_power_from
-    #    alphaclouds_renderer.SUN_POWER_TO = props.sun_power_to
-
-    #    alphaclouds_renderer.AMOUNT_OF_RENDERED_CLOUDS = props.amount_of_clouds
-    #    alphaclouds_renderer.RES_X = props.resolution_x
-    #    alphaclouds_renderer.RES_Y = props.resolution_y
+        RENDER = props.render_toggle
         
         
-     #   alphaclouds_renderer.printit()
+        plant_renderer.RES_X = props.res_x
+        plant_renderer.RES_Y = props.res_y
+
+
+        plant_renderer.TREE_SEED_MIN = props.random_seed_from
+        plant_renderer.TREE_SEED_MAX = props.random_seed_to
         
-      #  counter = 1
+        plant_renderer.LEAVES_MIN = props.random_leaves_from
+        plant_renderer.LEAVES_MAX = props.random_leaves_to
         
-      
+        plant_renderer.LEVELS_MIN = props.random_levels_from
+        plant_renderer.LEVELS_MAX = props.random_levels_to
+        
+        plant_renderer.TRUNK_HEIGHT_FROM = props.random_trunk_heigth_from
+        plant_renderer.TRUNK_HEIGHT_TO = props.random_trunk_height_to
+        
+        plant_renderer.SCALE_FROM = props.random_scale_from
+        plant_renderer.SCALE_FROM = props.random_scale_to
+        
+        plant_renderer.IMAGES_TO_PRODUCE = props.amount_plants
+        
+        
+        counter = 0
+        plant_renderer.get_alpha_plants()
+        while counter < props.amount_plants:
     
-    #    while counter <= alphaclouds_renderer.AMOUNT_OF_RENDERED_CLOUDS:
-    #        alphaclouds_renderer.delete_all()
-    #        alphaclouds_renderer.setup()
-    #        alphaclouds_renderer.create_metaballs()
-    #        alphaclouds_renderer.add_material()
-     #       if (props.render_toggle == True):
-     #           alphaclouds_renderer.render(counter)
-     #       print ("Generating Cloud Image: " + str(counter))
-           
-      #      counter = counter +1
     
+          plant_renderer.delete_all()
+          plant_renderer.setup()
+          
+          plant_renderer.create_tree()
+          plant_renderer.create_leaves_material()
+          plant_renderer.create_ivy_material()
+          if (RENDER == True):
+            plant_renderer.render(counter)
+          counter = counter + 1
+        
+            
+
+    
+    
+    
+    
+    
+   
         
         
         
         
-        toolbox.purge_orphans()
+        
+
         #this is a report, it pops up in the area defined in the word
         #in curly braces {} which is the first argument, second is the actual displayed text
         self.report({'INFO'}, "The custom operator actually worked!")
