@@ -53,10 +53,12 @@ class AlphacloudsInserterOperator(bpy.types.Operator):
         alphaclouds_inserter.USE_DUPLICATES = props.use_duplicates_toggle
         alphaclouds_inserter.AMOUNT_OF_DUBPLICATES = props.amount_of_duplicates
 
+        alphaclouds_inserter.create_collection()
+        
         if (props.delete_toggle == True):
             alphaclouds_inserter.cleanup()
             
-        alphaclouds_inserter.create_collection()  
+          
         alphaclouds_inserter.get_alphaclouds()
   
         counter = 1

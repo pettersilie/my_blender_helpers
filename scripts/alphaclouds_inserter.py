@@ -121,8 +121,10 @@ def createCube(name):
         ORIGINAL_CLOUDS.append(myCube_obj)
         
    # myCube_obj.select_set(False)
-    bpy.data.collections['clouds'].objects.link(myCube_obj)
-    bpy.context.scene.collection.objects.unlink(myCube_obj)
+    toolbox.link_object_to_collection("clouds", myCube_obj)
+   
+  #  bpy.data.collections['clouds'].objects.link(myCube_obj)
+  #  bpy.context.scene.collection.objects.unlink(myCube_obj)
     
   
   
@@ -132,6 +134,9 @@ def create_collection() :
     if "clouds" not in bpy.data.collections :
         create_collection = bpy.data.collections.new(name="clouds")
         bpy.context.scene.collection.children.link(create_collection)
+    
+
+
         
       
             
@@ -172,22 +177,11 @@ def scale_cloud(name):
     scale_obj.select_set(True)
     
     bpy.ops.transform.resize(value=(SCALE_FACTOR_X,SCALE_FACTOR_Y,SCALE_FACTOR_Z))
-    
 
-    
-    
-
-    
-    
-
-    
-    
  
 
 def main():
-    doof = True
-    if (doof == True):
-        return
+
     global CLOUD_AREA_X_FROM 
     global CLOUD_AREA_X_TO 
     global CLOUD_AREA_Y_FROM

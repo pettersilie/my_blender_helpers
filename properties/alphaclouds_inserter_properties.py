@@ -16,7 +16,7 @@ class AlphaCloudsInserterProperties(bpy.types.PropertyGroup):
     cloud_area_z_to : bpy.props.FloatProperty(name='Area Z To', default=50)
     
     scale_factor_x : bpy.props.FloatProperty(name='Scale Factor X', default=2)
-    scale_factor_z : bpy.props.FloatProperty(name='Scale Factor Y', default=2)
+    scale_factor_z : bpy.props.FloatProperty(name='Scale Factor Z', default=2)
     
     amount_of_clouds : bpy.props.IntProperty(name='Amount of Clouds', default=10)
     use_duplicates_toggle : bpy.props.BoolProperty(name='use dupblicates?',default=False)
