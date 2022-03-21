@@ -26,6 +26,10 @@ class AlphaPlantsRendererProperties(bpy.types.PropertyGroup):
     random_scale_from : bpy.props.FloatProperty(name='Scale From', min=-0, default=1)
     random_scale_to  : bpy.props.FloatProperty(name='Scale To', soft_min=0, default=2)
     
+    trunk_extension_from : bpy.props.FloatProperty(name='Trunk Ext From', min=0, default=0)
+    trunk_extension_to : bpy.props.FloatProperty(name='Trunk Ext To', min=0, default=0)
+    
+    
     amount_plants : bpy.props.IntProperty(name='Amount of Plants', min=1, soft_max=100,default=1)
     
     

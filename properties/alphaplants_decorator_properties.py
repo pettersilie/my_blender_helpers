@@ -5,17 +5,24 @@ class AlphaPlantsDecoratorProperties(bpy.types.PropertyGroup):
 
     
 
-
-    camera_distance_from : bpy.props.IntProperty(name='Camera Distance From', soft_min=-100, soft_max=100,default=-44)
-    camera_distance_to : bpy.props.IntProperty(name='Camera Distance To', soft_min=-100, soft_max=100,default=-30)
-
-
-    metaball_area_x_from : bpy.props.FloatProperty(name='MetaBall X From', soft_min=-10, soft_max=10,default=-10)
-    metaball_area_x_to : bpy.props.FloatProperty(name='MetaBall X To', soft_min=-10, soft_max=10,default=10)
+    delete_toggle : bpy.props.BoolProperty(name='Delete current plants?',default=False)
     
-    test_pointer : bpy.props.PointerProperty(name = "Object", type = bpy.types.Object)
+    decorate_object : bpy.props.PointerProperty(name = "Object to decorate", type = bpy.types.Object)
+
     
-    render_toggle : bpy.props.BoolProperty(name='Render?',default=False)
-    cloud_export_path : bpy.props.StringProperty(name="Output", subtype='FILE_PATH')
+    
+
+    
+    images_toggle : bpy.props.BoolProperty(name='Use images?',default=False)
+    images_turns : bpy.props.IntProperty(name='Image Rotations', min=1, soft_max=6,default=4)
+    
+    
+    amount_of_plants : bpy.props.IntProperty(name='Amount of plants', min=1, soft_max=100,default=10)
+    amount_of_dups : bpy.props.IntProperty(name='Amount of duplicates', min=0, soft_max=100,default=0)
+    
+    
+    
+   
+    
     
     

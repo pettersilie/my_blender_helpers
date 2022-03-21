@@ -254,7 +254,7 @@ def get_decorate_vertices():
     global DECORATE_VERTICES
     global DECORATE_OBJECT
     
-    DECORATE_OBJECT = bpy.data.objects["Plane"]
+    
     
     if (DECORATE_OBJECT is None):
         return

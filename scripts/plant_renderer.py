@@ -27,6 +27,9 @@ SCALE_TO = 2
 RES_X = 1280
 RES_Y = 1280
 
+TRUNK_EXT_FROM = 0
+TRUNK_EXT_TO = 0
+
 IMAGES_TO_PRODUCE = 1
 
 LEAVES_FILES = []
@@ -355,14 +358,45 @@ def main():
   #      render(counter)
         counter = counter + 1
     
+def extend_root_trunk():
+
+    global TRUNK_EXT_FROM
+    global TRUNK_EXT_TO
+    toolbox.deselect_all(True)
+    extension = random.uniform(TRUNK_EXT_FROM,TRUNK_EXT_TO)
+    obj = toolbox.get_object_by_prefix("tree")
+    toolbox.select_object_by_name("tree",True)
+    bpy.ops.object.editmode_toggle()
+    bpy.ops.curve.select_all(action='DESELECT')
+
+    points = obj.data.splines[0].bezier_points
+    points[0].select_control_point = True
+    
+    bpy.ops.transform.translate(value=(-0, -0, extension * (-1)), orient_axis_ortho='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+    
+    
+    bpy.ops.view3d.snap_cursor_to_selected()
+    
+
+    
+    
+    bpy.ops.object.editmode_toggle()
+    toolbox.deselect_all(True)
+    toolbox.select_object_by_name("tree",True)
+    bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
+    toolbox.deselect_all(True)
+    toolbox.select_object_by_name("leaves",True)
+    bpy.ops.object.origin_set(type='ORIGIN_CURSOR', center='MEDIAN')
+
+    
+    
+    toolbox.deselect_all(True)
+    
     
     
 def render(moves):    
     global OUTPUT
     
-    toolbox.select_object_by_name("tree",False)
-    toolbox.select_object_by_name("leaves",False)
-    bpy.ops.view3d.camera_to_view_selected()
 
  
     bpy.context.scene.frame_set(moves)

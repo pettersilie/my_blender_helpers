@@ -56,6 +56,8 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
         plant_renderer.SCALE_FROM = props.random_scale_to
         
         plant_renderer.IMAGES_TO_PRODUCE = props.amount_plants
+        plant_renderer.TRUNK_EXT_FROM = props.trunk_extension_from
+        plant_renderer.TRUNK_EXT_TO = props.trunk_extension_to
         
         
         counter = 0
@@ -69,6 +71,19 @@ class AlphaPlantsRendererOperator(bpy.types.Operator):
           plant_renderer.create_tree()
           plant_renderer.create_leaves_material()
           plant_renderer.create_ivy_material()
+          plant_renderer.extend_root_trunk()
+          
+          toolbox.select_object_by_name("tree",False)
+          toolbox.select_object_by_name("leaves",True)
+          bpy.ops.view3d.camera_to_view_selected()
+          toolbox.deselect_all(True)
+          
+          
+          
+          
+          
+          
+          
           if (RENDER == True):
             plant_renderer.render(counter)
           counter = counter + 1

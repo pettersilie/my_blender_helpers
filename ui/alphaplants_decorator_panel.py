@@ -21,10 +21,34 @@ class AlphaPlantsDecoratorPanel(bpy.types.Panel):
         
         subrow = self.layout
         
-        subrow.prop(context.scene.alphaplants_decorator_props, 'camera_distance_from')
-        subrow.prop(context.scene.alphaplants_decorator_props, 'test_pointer')
+        props = context.scene.alphaplants_decorator_props
+        
+        subrow.prop(props, 'delete_toggle')
+
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'images_toggle')
+        subrow.prop(props, 'images_turns')
+        subrow.row()
+        subrow.row()
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'amount_of_plants')
+        subrow.prop(props, 'amount_of_dups')
+      
+        
         
         subrow.row()
         subrow.row()
-        subrow.operator('custom.alphaplants_decorator_operator', text = 'Render')
-        self.layout.separator()  
+        subrow.prop(props, 'decorate_object')
+        subrow.row()
+        subrow.row()
+        subrow.operator('custom.alphaplants_decorator_operator', text = 'Decorate')
+        
+        
+        
+        
+        
+        
+
+  
