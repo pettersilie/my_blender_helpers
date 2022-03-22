@@ -77,6 +77,8 @@ class AlphaPlantsDecoratorOperator(bpy.types.Operator):
         plant_decorator.PLANT_DIRECTORY = renderer_props.plant_export_path
         plant_decorator.SCALE_FROM = renderer_props.random_scale_from
         plant_decorator.SCALE_TO = renderer_props.random_scale_to
+        plant_decorator.AMOUNT_OF_PLANTS = decorator_props.amount_of_plants
+        plant_decorator.AMOUNT_OF_DUPLICATES = decorator_props.amount_of_dups
         
         if (decorator_props.images_toggle == True):
             plant_decorator.read_alphaplants_from_folder()
@@ -105,7 +107,23 @@ class AlphaPlantsDecoratorOperator(bpy.types.Operator):
             plant_decorator.CURRENT_COUNTER = plant_decorator.CURRENT_COUNTER +1
             
             
+        if (plant_decorator.AMOUNT_OF_DUPLICATES > 0):
+        
+            counter = 0
+            while (counter < plant_decorator.AMOUNT_OF_DUPLICATES):
+        
+                if (decorator_props.images_toggle == True):
+                    plant_decorator.create_duplicate_image()
+                else:
+                    plant_decorator.create_duplicate_curve_tree()
+                    
+                if (decorator_props.decorate_object is not None):
+                    plant_decorator.move_plant_to_decorate_vertex()
+                
      
+                counter = counter +1
+                plant_decorator.CURRENT_COUNTER = plant_decorator.CURRENT_COUNTER +1
+                
         
         
         
@@ -126,7 +144,7 @@ class AlphaPlantsDecoratorOperator(bpy.types.Operator):
         
         
         
-        toolbox.purge_orphans()
+        toolbox.deselect_all(True)
         #this is a report, it pops up in the area defined in the word
         #in curly braces {} which is the first argument, second is the actual displayed text
         self.report({'INFO'}, "The custom operator actually worked!")

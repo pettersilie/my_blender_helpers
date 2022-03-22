@@ -49,7 +49,7 @@ class RocksGeneratorPanel(bpy.types.Panel):
         subrow.prop(props, 'rot_y_to')
         subrow.prop(props, 'rot_z_from')
         subrow.prop(props, 'rot_z_to')
-        subrow.prop(props, 'rock_texture_dir')
+      
         subrow.row()
         subrow.row()
         
