@@ -145,12 +145,15 @@ def rotate_rock():
     toolbox.select_object(CURRENT_ROCK,True)
     
     
-    rot_x = random.uniform(ROT_X_FROM,ROT_X_TO)
-    rot_y = random.uniform(ROT_Y_FROM,ROT_Y_TO)
-    rot_z = random.uniform(ROT_Z_FROM,ROT_Z_TO)
-    bpy.ops.transform.rotate(value=toolbox.calculate_rotation(rot_x), orient_axis='X')
-    bpy.ops.transform.rotate(value=toolbox.calculate_rotation(rot_y), orient_axis='Y')
-    bpy.ops.transform.rotate(value=toolbox.calculate_rotation(rot_z), orient_axis='Z')
+    rot_x = toolbox.calculate_rotation(random.uniform(ROT_X_FROM,ROT_X_TO))
+    rot_y = toolbox.calculate_rotation(random.uniform(ROT_Y_FROM,ROT_Y_TO))
+    rot_z = toolbox.calculate_rotation(random.uniform(ROT_Z_FROM,ROT_Z_TO))
+    
+    bpy.ops.transform.rotate(value=rot_x, orient_axis='X', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(True, False, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+    bpy.ops.transform.rotate(value=rot_y, orient_axis='Y', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, True, False), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+    bpy.ops.transform.rotate(value=rot_z, orient_axis='Z', orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', constraint_axis=(False, False, True), mirror=False, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
+
+
     
   
     
@@ -169,9 +172,6 @@ def scale_rock():
     scale_y = random.uniform(SCALE_Y_FROM,SCALE_Y_TO)
     scale_z = random.uniform(SCALE_Z_FROM,SCALE_Z_TO)
 
-    
-
-    
     bpy.ops.transform.resize(value=(scale_x,scale_y,scale_z))
     
     

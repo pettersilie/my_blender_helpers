@@ -52,6 +52,9 @@ class RocksGeneratorPanel(bpy.types.Panel):
       
         subrow.row()
         subrow.row()
+        subrow.prop(props, 'smooth_toggle')
+        subrow.row()
+        subrow.row()
         
         subrow.prop(props, 'amount_of_rocks')
         subrow.prop(props, 'amount_of_duplicates')
