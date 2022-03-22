@@ -61,6 +61,9 @@ class AlphaPlantsDecoratorOperator(bpy.types.Operator):
         
         
         plant_decorator.create_collection()
+        
+        
+        
         if (decorator_props.delete_toggle == True):
             plant_decorator.delete_plants()
             
@@ -72,11 +75,44 @@ class AlphaPlantsDecoratorOperator(bpy.types.Operator):
         plant_decorator.DECORATE_OBJECT = decorator_props.decorate_object
         plant_decorator.IMAGE_TURNS = decorator_props.images_turns  
         plant_decorator.PLANT_DIRECTORY = renderer_props.plant_export_path
+        plant_decorator.SCALE_FROM = renderer_props.random_scale_from
+        plant_decorator.SCALE_TO = renderer_props.random_scale_to
         
         if (decorator_props.images_toggle == True):
             plant_decorator.read_alphaplants_from_folder()
+        else:
+            plant_renderer.get_alpha_plants()
             
-        plant_decorator.import_image_plant()
+            
+        if (decorator_props.decorate_object is not None):
+            plant_decorator.get_decorate_vertices()
+            
+        
+        counter = 0
+        while counter < decorator_props.amount_of_plants:
+        
+            if (decorator_props.images_toggle == True):
+                plant_decorator.import_image_plant()
+            else:
+                plant_decorator.create_curves_tree()
+        
+        
+            plant_decorator.scale_plant()
+            
+            if (decorator_props.decorate_object is not None):
+                plant_decorator.move_plant_to_decorate_vertex()
+            counter = counter + 1;
+            plant_decorator.CURRENT_COUNTER = plant_decorator.CURRENT_COUNTER +1
+            
+            
+     
+        
+        
+        
+        
+        
+        
+        
         
         
         

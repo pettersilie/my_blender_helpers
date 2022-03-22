@@ -136,6 +136,7 @@ def select_object_by_name(name,set_active_object):
     obj.select_set(True)
     if (set_active_object == True):
         bpy.context.view_layer.objects.active = obj 
+    return obj
         
 
 def get_object_by_prefix(prefix):

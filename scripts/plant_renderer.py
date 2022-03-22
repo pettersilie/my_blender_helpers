@@ -95,8 +95,8 @@ def setup():
         bpy.data.collections['setup'].objects.link(myCam)
         bpy.context.scene.collection.objects.unlink(myCam)
         
-        if "tree" not in bpy.data.collections :
-            create_collection = bpy.data.collections.new(name="tree")
+        if "plants_addon" not in bpy.data.collections :
+            create_collection = bpy.data.collections.new(name="plants_addon")
             bpy.context.scene.collection.children.link(create_collection)
         
         
@@ -116,7 +116,7 @@ def create_leaves_material():
     global LEAVES_FILES
     
     
-    leaves_obj = bpy.data.collections['tree'].objects["leaves"]
+    leaves_obj = bpy.data.collections['plants_addon'].objects["leaves"]
     leaves_obj.parent = None
     leaves_obj.select_set(True)
  
@@ -164,7 +164,7 @@ def create_leaves_material():
 
 def create_ivy_material():
     
-    ivy_obj = bpy.data.collections['tree'].objects["tree"]
+    ivy_obj = bpy.data.collections['plants_addon'].objects["tree"]
   
     ivy_obj.select_set(True)
  
@@ -328,35 +328,18 @@ def create_tree():
     bpy.data.objects["tree"].select_set(True)
     
     tree = bpy.context.selected_objects[0]
-    bpy.data.collections['tree'].objects.link(tree)
+    bpy.data.collections['plants_addon'].objects.link(tree)
     bpy.context.scene.collection.objects.unlink(tree)
     
     bpy.data.objects["tree"].select_set(False)
     bpy.data.objects["leaves"].select_set(True)
     
     leaves = bpy.context.selected_objects[0]
-    bpy.data.collections['tree'].objects.link(leaves)
+    bpy.data.collections['plants_addon'].objects.link(leaves)
     bpy.context.scene.collection.objects.unlink(leaves)
     bpy.data.objects["leaves"].select_set(False)
 
 
-def main():
-    
-    global IMAGES_TO_PRODUCE
-    
-    
-    counter = 1
-    while counter < IMAGES_TO_PRODUCE:
-    
-    
-        delete_all()
-        setup()
-        get_alpha_plants()
-        create_tree()
-        create_leaves_material()
-        create_ivy_material()
-  #      render(counter)
-        counter = counter + 1
     
 def extend_root_trunk():
 
