@@ -6,5 +6,6 @@ __all__ = [
     "alphaclouds_inserter",
     "plant_decorator",
     "plant_renderer",
-    "rocks_generator"
+    "rocks_generator",
+    "bone_decorator"
 ]
