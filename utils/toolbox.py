@@ -144,6 +144,12 @@ def get_object_by_prefix(prefix):
         if (obj.name.startswith(prefix)):
             return obj
     return None
+    
+def get_object_by_name(name):
+    for obj in bpy.data.objects:
+        if (obj.name == name):
+            return obj
+    return None
         
     
 

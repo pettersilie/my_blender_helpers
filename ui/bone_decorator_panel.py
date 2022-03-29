@@ -31,7 +31,7 @@ class BoneDecoratorPanel(bpy.types.Panel):
 
         subrow.row()
         subrow.row()
-        
+        subrow.prop(props, 'scale_factor')
         subrow.row()
         subrow.row()
         subrow.prop(props, 'decorate_object')
