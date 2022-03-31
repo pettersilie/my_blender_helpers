@@ -104,11 +104,16 @@ def create_curves_tree():
     tree = toolbox.select_object_by_name("tree",True)
     tree.name = "addon_plant" + "_" + str(CURRENT_COUNTER)
     tree.data.name = "addon_plant" + "_" + str(CURRENT_COUNTER)
+    
+    
     toolbox.deselect_all(True)
+    
     leaves = toolbox.select_object_by_name("leaves",True)
     leaves.name = "addon_leaves" + "_" + str(CURRENT_COUNTER)
     leaves.data.name = "addon_leaves" + "_" + str(CURRENT_COUNTER)
+    
     toolbox.deselect_all(True)
+    
     toolbox.select_object_by_name("addon_leaves" + "_" + str(CURRENT_COUNTER),False)
     toolbox.select_object_by_name("addon_plant" + "_" + str(CURRENT_COUNTER),True)
     bpy.ops.object.parent_set(type='OBJECT', keep_transform=False)

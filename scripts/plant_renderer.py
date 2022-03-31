@@ -115,15 +115,15 @@ def create_leaves_material():
     global LEAVES_DIR
     global LEAVES_FILES
     
-    
+    toolbox.deselect_all(True)
     leaves_obj = bpy.data.collections['plants_addon'].objects["leaves"]
-    leaves_obj.parent = None
-    leaves_obj.select_set(True)
- 
-    bpy.ops.object.select_all(action='DESELECT')
-    bpy.context.view_layer.objects.active = leaves_obj
-    bpy.ops.material.new()
-    material = bpy.data.materials['Material']
+    #leaves_obj.parent = None
+    #leaves_obj.select_set(True)
+    toolbox.select_object(leaves_obj,True)
+    #bpy.ops.object.select_all(action='DESELECT')
+    #bpy.context.view_layer.objects.active = leaves_obj
+    material = bpy.data.materials.new(name="leaves_material")
+    #material = bpy.data.materials['Material']
     material.use_nodes = True
     material.name = "leaves_material"
     
@@ -164,14 +164,15 @@ def create_leaves_material():
 
 def create_ivy_material():
     
+    toolbox.deselect_all(True)
     ivy_obj = bpy.data.collections['plants_addon'].objects["tree"]
   
-    ivy_obj.select_set(True)
- 
-    bpy.ops.object.select_all(action='DESELECT')
-    bpy.context.view_layer.objects.active = ivy_obj
-    bpy.ops.material.new()
-    material = bpy.data.materials['Material']
+    toolbox.select_object(ivy_obj,True)
+    
+    material = bpy.data.materials.new(name="ivy_material")
+    
+    #bpy.ops.material.new()
+    #material = bpy.data.materials['Material']
     material.use_nodes = True
     material.name = "ivy_material"
     ivy_obj.data.materials.append(material)
@@ -338,6 +339,7 @@ def create_tree():
     bpy.data.collections['plants_addon'].objects.link(leaves)
     bpy.context.scene.collection.objects.unlink(leaves)
     bpy.data.objects["leaves"].select_set(False)
+    toolbox.deselect_all(True)
 
 
     
