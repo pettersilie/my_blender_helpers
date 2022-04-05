@@ -7,5 +7,6 @@ __all__ = [
     "alphaplants_renderer_operator",
     "alphaplants_decorator_operator",
     "rocks_generator_operator",
-    "bone_decorator_operator"
+    "bone_decorator_operator",
+    "face_importer_operator"
 ]

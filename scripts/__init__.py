@@ -7,5 +7,6 @@ __all__ = [
     "plant_decorator",
     "plant_renderer",
     "rocks_generator",
-    "bone_decorator"
+    "bone_decorator",
+    "face_importer"
 ]

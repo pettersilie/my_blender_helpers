@@ -7,6 +7,7 @@ __all__ = [
     "alphaplants_decorator_properties",
     "alphaplants_renderer_properties",
     "rocks_generator_properties",
-    "bone_decorator_properties"
+    "bone_decorator_properties",
+    "face_importer_properties"
      
 ]

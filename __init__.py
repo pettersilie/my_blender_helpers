@@ -35,6 +35,7 @@ else:
     from .ui.alphaplants_decorator_panel import AlphaPlantsDecoratorPanel
     from .ui.rocks_generator_panel import RocksGeneratorPanel
     from .ui.bone_decorator_panel import BoneDecoratorPanel
+    from .ui.face_importer_panel import FaceImporterPanel
 
     from .operators.alphaclouds_renderer_operator import AlphaCloudsRendererOperator
     from .operators.alphaclouds_inserter_operator import AlphacloudsInserterOperator
@@ -42,6 +43,7 @@ else:
     from .operators.alphaplants_decorator_operator import AlphaPlantsDecoratorOperator
     from .operators.rocks_generator_operator import RocksGeneratorOperator
     from .operators.bone_decorator_operator import BoneDecoratorOperator
+    from .operators.face_importer_operator import FaceImporterOperator
     
     
     from .properties.alphaclouds_renderer_properties import AlphaCloudsRendererProperties        
@@ -51,9 +53,8 @@ else:
     from .properties.alphaplants_decorator_properties import AlphaPlantsDecoratorProperties
     from .properties.rocks_generator_properties import RocksGeneratorProperties
     from .properties.bone_decorator_properties import BoneDecoratorProperties
-    
-    
-    
+    from .properties.face_importer_properties import FaceImporterProperties
+            
     from .scripts import *
 
 
@@ -69,6 +70,7 @@ __CLASSES__ = [
     AlphaPlantsDecoratorOperator,
     RocksGeneratorOperator,
     BoneDecoratorOperator,
+    FaceImporterOperator,
         
     AlphaCloudsRendererProperties,
     AlphaCloudsInserterProperties,
@@ -76,13 +78,15 @@ __CLASSES__ = [
     AlphaPlantsDecoratorProperties,
     RocksGeneratorProperties,
     BoneDecoratorProperties,
+    FaceImporterProperties,
     
     AlphaCloudsRendererPanel,
     AlphaCloudsInserterPanel,
     AlphaPlantsRendererPanel,
     AlphaPlantsDecoratorPanel,
     RocksGeneratorPanel,
-    BoneDecoratorPanel
+    BoneDecoratorPanel,
+    FaceImporterPanel
     
 ]
 
@@ -116,6 +120,7 @@ def register():
     
     bpy.types.Scene.rocks_generator_props = bpy.props.PointerProperty(type=RocksGeneratorProperties)
     bpy.types.Scene.bone_decorator_props = bpy.props.PointerProperty(type=BoneDecoratorProperties)
+    bpy.types.Scene.face_importer_props = bpy.props.PointerProperty(type=FaceImporterProperties)
     
     print(__name__ + " loaded")
 
@@ -131,6 +136,7 @@ def unregister():
     del bpy.types.Scene.alphaplants_renderer_props
     del bpy.types.Scene.alphaplants_decorator_props
     del bpy.types.Scene.bone_decorator_props
+    del bpy.types.Scene.face_importer_props
     cleanse_modules()
     
 
