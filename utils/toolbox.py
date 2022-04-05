@@ -7,6 +7,13 @@ from math import pi
 
 
 
+def get_object_from_collection_by_prefix(collection_name, prefix):
+    for obj in bpy.data.collections[collection_name].all_objects:
+      if obj.name.startswith(prefix):
+          return obj
+    return None 
+
+
 def purge_orphans():
 
   for block in bpy.data.meshes:
