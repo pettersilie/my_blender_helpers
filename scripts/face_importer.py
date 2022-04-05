@@ -3,13 +3,26 @@ import os
 from ..utils import toolbox
 
 
-SELECTED_OBJECT = 0
-SELECTED_OBJECT_LOCATION = 0
+SELECTED_OBJECT = None
+SELECTED_OBJECT_LOCATION = None
 SELECTED_OBJECT_FOUND = 0
-SELECTED_OBJECT_DIMENSION = 0
+SELECTED_OBJECT_DIMENSION = None
+SELECTED_OBJECT_COLLECTION = None
 SELECTED_OBJECT_COLLECTION_NAME = None
 FACE_BLEND_FILE = None
+SCALE_PERCENTAGE = 10
 
+
+
+def delete_current_face():
+    collection = bpy.data.collections.get('2DFace')
+    if (collection is None):
+        return
+ 
+    for obj in collection.objects:
+        bpy.data.objects.remove(obj, do_unlink=True)
+    
+    bpy.data.collections.remove(collection)
 
 
 
@@ -17,6 +30,7 @@ def import_face():
 
   global SELECTED_OBJECT_FOUND
   global SELECTED_OBJECT 
+  global SELECTED_OBJECT_COLLECTION
   global SELECTED_OBJECT_COLLECTION_NAME
   global FACE_BLEND_FILE
   if SELECTED_OBJECT_FOUND == 0:
@@ -47,8 +61,19 @@ def import_face():
     
   toolbox.deselect_all(True)
   faceCollection = bpy.data.collections['2DFace']
-  targetCollection = bpy.data.collections[SELECTED_OBJECT_COLLECTION_NAME]
+  
+  
+  print ("DOOOOOF " + str(SELECTED_OBJECT_COLLECTION_NAME))
+ 
+  
+
+  targetCollection = SELECTED_OBJECT_COLLECTION
   print ("DOOOOOF " + str(targetCollection.name))
+  bpy.context.scene.collection.children.unlink(faceCollection)
+  targetCollection.children.link(faceCollection)
+  
+  
+  
   
  # targetCollection.children.link(faceCollection)
  # bpy.context.scene.collection.children.unlink(faceCollection)
@@ -69,10 +94,11 @@ def get_selected_object():
     global SELECTED_OBJECT_LOCATION 
     global SELECTED_OBJECT_FOUND 
     global SELECTED_OBJECT_DIMENSION
+    global SELECTED_OBJECT_COLLECTION
     global SELECTED_OBJECT_COLLECTION_NAME
 
     print ("OBJECT SELECTED")
-    SELECTED_OBJECT = selection_names[0]
+    
     print (SELECTED_OBJECT.name)
     print (str(SELECTED_OBJECT.dimensions))
     bpy.context.scene.cursor.location = SELECTED_OBJECT.location
@@ -80,8 +106,9 @@ def get_selected_object():
     SELECTED_OBJECT_LOCATION = SELECTED_OBJECT.matrix_world.translation 
     SELECTED_OBJECT_DIMENSION = SELECTED_OBJECT.dimensions
     print (str(SELECTED_OBJECT.users_collection[0].name))
+    SELECTED_OBJECT_COLLECTION = SELECTED_OBJECT.users_collection[0]
     SELECTED_OBJECT_COLLECTION_NAME = SELECTED_OBJECT.users_collection[0].name
-        
+    
     
           
       
@@ -94,6 +121,7 @@ def move_2Dface():
     global SELECTED_OBJECT_FOUND
     global SELECTED_OBJECT
     global SELECTED_OBJECT_LOCATION
+    global SCALE_PERCENTAGE
     if SELECTED_OBJECT_FOUND == 0:
       print("NO selected Object found")
       return
@@ -127,7 +155,7 @@ def move_2Dface():
     
     
    
-    armobj.location.y = armobj.location.y - ((dim_y / 2) + (dim_y / 100 * 10))
+    armobj.location.y = armobj.location.y - ((dim_y / 2) + (dim_y / 100 * SCALE_PERCENTAGE))
   #  armobj.location.x = SELECTED_OBJECT_LOCATION.x
     
     
@@ -445,9 +473,9 @@ def deselect_all():
       
       
 def finish():
-    global SELECTED_OBJECT_COLLECTION_NAME
+    global SELECTED_OBJECT
     col = bpy.data.collections.get("2DFace")
     if col:
-      col.name = "2DFace.ready." + SELECTED_OBJECT_COLLECTION_NAME
+      col.name = SELECTED_OBJECT.name + "_2DFace.ready" 
       
 

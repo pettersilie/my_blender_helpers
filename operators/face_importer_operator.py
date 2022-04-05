@@ -1,7 +1,6 @@
 import bpy
-from ..scripts import rocks_generator
+from ..scripts import face_importer
 import random
-from random import uniform
 from ..utils import toolbox
 
 
@@ -29,7 +28,39 @@ class FaceImporterOperator(bpy.types.Operator):
         
         props = context.scene.face_importer_props
 
+        if (props.face_object is None):
+            return {'FINISHED'}
+            
+        if (props.delete_toggle == True):
+            face_importer.delete_current_face()   
+            #toolbox.purge_orphans()
+            #toolbox.purge_orphans()
+            #toolbox.purge_orphans()
+            
+            
         
+        face_importer.SELECTED_OBJECT = props.face_object
+        face_importer.FACE_BLEND_FILE = props.face_file
+        face_importer.SCALE_PERCENTAGE = props.scale_percentage
+        
+        if (toolbox.file_exists(props.face_file) == False):
+            return {'FINISHED'}
+        
+        face_importer.get_selected_object()
+        face_importer.import_face()
+        
+        face_importer.move_2Dface()
+        face_importer.do_resizinig()
+      
+        face_importer.parent_to_headbone()
+      
+
+
+
+        face_importer.do_shrinkwrapping()
+        
+        if (props.finish_toggle == True):
+            face_importer.finish()
         
         
         #this is a report, it pops up in the area defined in the word

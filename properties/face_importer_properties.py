@@ -5,14 +5,15 @@ class FaceImporterProperties(bpy.types.PropertyGroup):
 
     
 
-    delete_toggle : bpy.props.BoolProperty(name='Delete rocks?',default=True)
-    rock_texture_dir : bpy.props.StringProperty(name="TextureDir", subtype='FILE_PATH')
-    smooth_toggle : bpy.props.BoolProperty(name='Smooth?',default=True)
+    delete_toggle : bpy.props.BoolProperty(name='Delete current?',default=True)
+    face_file : bpy.props.StringProperty(name="Face Blendile", subtype='FILE_PATH')
     
-    sphere_subdivision : bpy.props.IntProperty(name='Sphere Subdivison', min=0, max=10,default=2)
     
-    displace_strength_from : bpy.props.FloatProperty(name='Disp Strength From', min=0, soft_max=10,default=0)
+    scale_percentage : bpy.props.IntProperty(name='Scale Percentage', min=0, max=100,default=10)
+    
+    face_object : bpy.props.PointerProperty(name = "FaceObject", type = bpy.types.Object)
    
+    finish_toggle : bpy.props.BoolProperty(name='Finish?',default=False)
     
     
     

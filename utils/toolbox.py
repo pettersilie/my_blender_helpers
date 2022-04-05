@@ -16,6 +16,11 @@ def get_object_from_collection_by_prefix(collection_name, prefix):
 
 def purge_orphans():
 
+
+  for block in bpy.data.collections:
+      if block.users == 0:
+          bpy.data.collections.remove(block)
+          
   for block in bpy.data.meshes:
       if block.users == 0:
           bpy.data.meshes.remove(block)
@@ -56,6 +61,11 @@ def purge_orphans():
   for block in bpy.data.cameras:
       if block.users == 0:
           bpy.data.cameras.remove(block)
+          
+  for block in bpy.data.armatures:
+      if block.users == 0:
+          bpy.data.armatures.remove(block)
+  
           
 def get_selected_vertices_from_object_as_index(obj):
     indices = []
@@ -115,6 +125,12 @@ def directory_exists(path):
     p = Path(path)
     if (p.is_dir()):
         return p.exists()
+    else:
+        return False
+        
+def file_exists(path):
+    if os.path.isfile(path):
+        return True
     else:
         return False
  

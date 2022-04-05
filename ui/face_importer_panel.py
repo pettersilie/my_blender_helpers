@@ -20,11 +20,23 @@ class FaceImporterPanel(bpy.types.Panel):
         subrow = self.layout
         props = context.scene.face_importer_props
         
-        subrow.prop(props, 'rock_texture_dir')
+        subrow.prop(props, 'delete_toggle')
         subrow.row()
         subrow.row()
         
-        subrow.prop(props, 'import object')
+        subrow.prop(props, 'face_file')
+        
+        subrow.row()
+        subrow.row()
+        
+        subrow.prop(props, 'scale_percentage')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'face_object')
+        subrow.row()
+        subrow.row()
+        subrow.prop(props, 'finish_toggle')
+
         
         subrow.row()
         subrow.row()
