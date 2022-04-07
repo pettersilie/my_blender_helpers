@@ -66,10 +66,15 @@ def import_face():
   print ("DOOOOOF " + str(SELECTED_OBJECT_COLLECTION_NAME))
  
   
+  active_collection = bpy.context.view_layer.active_layer_collection.collection
 
   targetCollection = SELECTED_OBJECT_COLLECTION
   print ("DOOOOOF " + str(targetCollection.name))
-  bpy.context.scene.collection.children.unlink(faceCollection)
+  
+
+  #bpy.context.scene.collection.children.unlink(faceCollection)
+    
+  active_collection.children.unlink(faceCollection)  
   targetCollection.children.link(faceCollection)
   
   
