@@ -9,11 +9,14 @@ class FaceImporterProperties(bpy.types.PropertyGroup):
     face_file : bpy.props.StringProperty(name="Face Blendile", subtype='FILE_PATH')
     
     
-    scale_percentage : bpy.props.IntProperty(name='Scale Percentage', min=0, max=100,default=10)
+    scale_factor : bpy.props.FloatProperty(name='Scale Factor', min=0 ,default=1)
+    
+    armature_distance_percent : bpy.props.IntProperty(name='Distance %', min=0, max=100 ,default=10)
     
     face_object : bpy.props.PointerProperty(name = "FaceObject", type = bpy.types.Object)
    
     finish_toggle : bpy.props.BoolProperty(name='Finish?',default=False)
+    
     
     
     

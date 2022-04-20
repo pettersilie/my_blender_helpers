@@ -10,11 +10,13 @@ SELECTED_OBJECT_DIMENSION = None
 SELECTED_OBJECT_COLLECTION = None
 SELECTED_OBJECT_COLLECTION_NAME = None
 FACE_BLEND_FILE = None
-SCALE_PERCENTAGE = 10
+DISTANCE_PERCENTAGE = 10
+SCALE_FACTOR = 10
 
 
 
 def delete_current_face():
+    toolbox.purge_orphans()
     collection = bpy.data.collections.get('2DFace')
     if (collection is None):
         return
@@ -23,6 +25,7 @@ def delete_current_face():
         bpy.data.objects.remove(obj, do_unlink=True)
     
     bpy.data.collections.remove(collection)
+    toolbox.purge_orphans()
 
 
 
@@ -44,12 +47,17 @@ def import_face():
 
   
   section = "\\Collection\\"
-  object = "2DFace"
+  colname = "2DFace"
 
 
-  filepath  = FACE_BLEND_FILE + section + object
+  filepath  = FACE_BLEND_FILE + section + colname
   directory = FACE_BLEND_FILE + section
-  filename  = object
+  filename  = colname
+
+  #path = FACE_BLEND_FILE + "/Collection/"
+  #object_name = "2DFace"
+  #bpy.ops.wm.append(filename=object_name, directory=path)
+		
 
     
   bpy.ops.wm.append(
@@ -126,7 +134,8 @@ def move_2Dface():
     global SELECTED_OBJECT_FOUND
     global SELECTED_OBJECT
     global SELECTED_OBJECT_LOCATION
-    global SCALE_PERCENTAGE
+    global SCALE_FACTOR
+    global DISTANCE_PERCENTAGE
     if SELECTED_OBJECT_FOUND == 0:
       print("NO selected Object found")
       return
@@ -160,7 +169,7 @@ def move_2Dface():
     
     
    
-    armobj.location.y = armobj.location.y - ((dim_y / 2) + (dim_y / 100 * SCALE_PERCENTAGE))
+    armobj.location.y = armobj.location.y - ((dim_y / 2) + (dim_y / 100 * DISTANCE_PERCENTAGE))
   #  armobj.location.x = SELECTED_OBJECT_LOCATION.x
     
     
@@ -171,73 +180,33 @@ def do_resizinig():
     global SELECTED_OBJECT_DIMENSION
     global SELECTED_OBJECT_FOUND
     global SELECTED_OBJECT
+    global SCALE_FACTOR
     if SELECTED_OBJECT_FOUND == 0:
       return
   
-    scale_up = False
-    scale_down = False
-    scale_value = 0
-    scale_relation = 0
+
     
     print ("RESIZING")
-    deselect_all()
+    toolbox.deselect_all(True)
     armobj = find_face_armature()
     
-    armobj.select_set(True)
-    select_dim_x = SELECTED_OBJECT_DIMENSION.x
-    select_dim_z = SELECTED_OBJECT_DIMENSION.z
+    toolbox.select_object(armobj, True)
+    
     
 
-    arm_dim_x = armobj.dimensions.x
-    arm_dim_z = armobj.dimensions.z
     
-    select_area = select_dim_x * select_dim_z
-    arm_area = arm_dim_x * arm_dim_z
+   
+    
+   
+    
     
 
-    print(str(select_area))
-    print(str(arm_area))
     
-    current_relation = arm_area * 100 / select_area
     
-    print ("Percent:")
-    print (str(current_relation)) 
-    #percentage = 19.30
-    percentage = 30
+    bpy.ops.transform.resize(value=(SCALE_FACTOR, SCALE_FACTOR, SCALE_FACTOR), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
     
-    if (current_relation > percentage):
-        scale_down = True
-        print ("We wil scale down....")
-    elif (current_relation < percentage):
-        scale_up = True
-        print ("We will scale up....")
-    else:
-        print ("Nothing to scale here...leaving")
-        return
-        
-    print ("calculating scale_value....")
-    if scale_up:
-        scale_value = percentage - current_relation
-    elif scale_down:
-        scale_value = current_relation - percentage
-    else:
-        print ("Nothing to scale... return")
-        return
     
-    if scale_up:
-        scale_relation = 1 + (scale_value / 100)
-    elif scale_down:
-        scale_relation = 1 - (scale_value / 100)
-    else:
-        print ("Nothing to do with scale_relation ... return")
-        return
-    
-    deselect_all()
-    armobj.select_set(True)
-    bpy.context.view_layer.objects.active = armobj
-    
-    bpy.ops.transform.resize(value=(scale_relation, scale_relation, scale_relation), orient_type='GLOBAL', orient_matrix=((1, 0, 0), (0, 1, 0), (0, 0, 1)), orient_matrix_type='GLOBAL', mirror=True, use_proportional_edit=False, proportional_edit_falloff='SMOOTH', proportional_size=1, use_proportional_connected=False, use_proportional_projected=False)
-    bpy.context.view_layer.objects.active = None
+    toolbox.deselect_all(True)
   
         
     

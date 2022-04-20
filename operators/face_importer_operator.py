@@ -41,7 +41,8 @@ class FaceImporterOperator(bpy.types.Operator):
         
         face_importer.SELECTED_OBJECT = props.face_object
         face_importer.FACE_BLEND_FILE = props.face_file
-        face_importer.SCALE_PERCENTAGE = props.scale_percentage
+        face_importer.SCALE_FACTOR = props.scale_factor
+        face_importer.DISTANCE_PERCENTAGE = props.armature_distance_percent
         
         if (toolbox.file_exists(props.face_file) == False):
             return {'FINISHED'}

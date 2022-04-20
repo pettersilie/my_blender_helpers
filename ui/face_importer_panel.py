@@ -29,8 +29,11 @@ class FaceImporterPanel(bpy.types.Panel):
         subrow.row()
         subrow.row()
         
-        subrow.prop(props, 'scale_percentage')
+        subrow.prop(props, 'scale_factor')
         subrow.row()
+        subrow.prop(props, 'armature_distance_percent')
+        
+   
         subrow.row()
         subrow.prop(props, 'face_object')
         subrow.row()
